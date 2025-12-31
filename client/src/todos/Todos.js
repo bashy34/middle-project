@@ -1,7 +1,9 @@
-import React from 'react'
 import Axios from 'axios'
 import { useEffect,useState } from 'react'
 import SingleTodo from './SingleTodo'
+import AddTodo from './AddTodo'
+
+
 function Todos() {
     const [todosData, setTodosData] = useState([])
     const fetchTodosData = async () => {
@@ -18,8 +20,9 @@ function Todos() {
     <div>
         
         {
-            todosData.map(todo => <SingleTodo todo={todo}/>)
+            todosData.map(todo => <SingleTodo todo={todo} fetchTodosData={fetchTodosData}/>)
         }
+      <AddTodo fetchTodosData={fetchTodosData}/>
     </div>
   )
 }

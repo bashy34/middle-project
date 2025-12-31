@@ -5,6 +5,8 @@ import Todos from './todos/Todos';
 import Posts from './posts/Posts';
 import Photos from './photos/Photos';
 import Users from './users/Users';
+import AddTodo from './todos/AddTodo';
+
 
 function App() {
   return (
