@@ -13,16 +13,17 @@ import Box from '@mui/material/Box';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
-
+import Update1 from './Update1'
 
 
 
 export default function BasicCard({ todo, fetchTodosData }) {
-  const [checked, setChecked] = useState(todo.completed);
+  // const [checked, setChecked] = useState(todo.completed);
 
   const handleChange = async (event) => {
-    setChecked(event.target.checked)
+    // setChecked(event.target.checked)
     await Axios.put(`http://localhost:7500/api/tasks/${todo._id}`)
+    fetchTodosData()
   };
   const handleDelete = async () => {
     await Axios.delete(`http://localhost:7500/api/tasks/`, {
@@ -50,14 +51,15 @@ export default function BasicCard({ todo, fetchTodosData }) {
               <DeleteIcon fontSize="inherit" />
             </IconButton> */}
         <Box sx={{ '& > :not(style)': { m: 1 } }}>
-          <Fab color="primary" aria-label="edit">
+          {/* <Fab color="primary" aria-label="edit">
             <EditIcon />
-          </Fab>
+          </Fab> */}
+          <Update1 todo={todo} fetchTodosData={fetchTodosData} />
           <Fab color="secondary" aria-label="delete" onClick={handleDelete}>
             <DeleteIcon />
           </Fab>
           <Checkbox
-            checked={checked}
+            checked={todo.completed}
             onChange={handleChange}
             icon={<CloseIcon />}
             checkedIcon={<CheckIcon sx={{ color: '#fff' }} />}
@@ -65,10 +67,10 @@ export default function BasicCard({ todo, fetchTodosData }) {
               width: 60,
               height: 60,
               borderRadius: '80%',
-              backgroundColor: checked ? '#c99cffff' : '#969494ff',
+              backgroundColor: todo.completed ? '#c99cffff' : '#969494ff',
               boxShadow: '0 4px 12px rgba(0, 0, 0, 0.25)',
               '&:hover': {
-                backgroundColor: checked ? '#b578ffff' : '#636060ff',
+                backgroundColor: todo.completed ? '#b578ffff' : '#636060ff',
               },
             }}
             
