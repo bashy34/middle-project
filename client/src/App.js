@@ -7,6 +7,7 @@ import Photos from './photos/Photos';
 import Users from './users/Users';
 import AddTodo from './todos/AddTodo';
 import AddPost from './posts/AddPost';
+import AddUser from './users/Adduser';
 
 
 function App() {
@@ -18,9 +19,10 @@ function App() {
             <Route index element = {<h1>home Page!!!!!!</h1>}/>
             <Route path='/Todos' element={<Todos />}/>
             <Route path='/AddTodo' element={<AddTodo />}/>
-            <Route path='/AddPost' element={<AddPost />}/>
             <Route path='/posts' element={<Posts />}/>
+            <Route path='/AddPost' element={<AddPost />}/>
             <Route path='/users' element={<Users />}/>
+            <Route path='/AddUser' element={<AddUser />}/>
             <Route path='/photos' element={<Photos />}/>
           </Route>
         </Routes>
