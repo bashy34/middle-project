@@ -17,7 +17,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Layout />}>
-            <Route index element = {<h1>home Page!!!!!!</h1>}/>
+            <Route index element = {<h1>created by Bashy Frishman</h1>}/>
             <Route path='/Todos' element={<Todos />}/>
             <Route path='/AddTodo' element={<AddTodo />}/>
             <Route path='/posts' element={<Posts />}/>
