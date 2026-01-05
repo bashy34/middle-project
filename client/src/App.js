@@ -8,6 +8,7 @@ import Users from './users/Users';
 import AddTodo from './todos/AddTodo';
 import AddPost from './posts/AddPost';
 import AddUser from './users/Adduser';
+import AddPhoto from './photos/AddPhoto'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route path='/users' element={<Users />}/>
             <Route path='/AddUser' element={<AddUser />}/>
             <Route path='/photos' element={<Photos />}/>
+            <Route path='/AddPhotos' element={<AddPhoto />}/>
           </Route>
         </Routes>
       </Router>

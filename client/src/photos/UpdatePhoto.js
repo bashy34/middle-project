@@ -28,18 +28,15 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
-export default function CustomizedDialogs({ fetchTodosData, todo }) {
+export default function CustomizedDialogs({ fetchPhotosData, item }) {
     const [open, setOpen] = useState(false);
-    const [title, setTitle] = useState(todo.title);
-    const [tags, setTags] = useState(todo.tags);
-    const [completed, setCompleted] = useState(todo.completed)
-    console.log(typeof (completed) + " " + completed)
+    const [title, setTitle] = useState(item.title);
+    // const [imageUrl, setImageUrl] = useState(item.imageUrl);
 
     useEffect(() => {
-        setTitle(todo.title);
-        setTags(todo.tags);
-        setCompleted(Boolean(todo.completed));
-    }, [todo]);
+        setTitle(item.title);
+        // setImageUrl(item.imageUrl);
+    }, [item]);
 
 
     const handleClickOpen = () => {
@@ -56,23 +53,18 @@ export default function CustomizedDialogs({ fetchTodosData, todo }) {
             return
         }
         const obj = {
-            id: todo._id,
+            id: item._id,
             title,
-            tags,
-            completed
+            // imageUrl,
         }
-        console.log(obj)
         //save in DB
-        updateTodo(obj)
-        alert("succes add todo")
+        updatePhoto(obj)
+        alert("succes add post")
         setOpen(false);
-        // setTitle("")
-        // setTags([])
-        // setCompleted(false)
     }
-    const updateTodo = async (obj) => {
-        await Axios.put(`http://localhost:7500/api/tasks/`, obj)
-        fetchTodosData()
+    const updatePhoto = async (obj) => {
+        await Axios.put(`http://localhost:7500/api/potos/`, obj)
+        fetchPhotosData()
     }
 
     return (
@@ -87,7 +79,7 @@ export default function CustomizedDialogs({ fetchTodosData, todo }) {
                 open={open}
             >
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                    Edit Todo
+                    Edit Photo
                 </DialogTitle>
                 <IconButton
                     aria-label="close"
@@ -110,8 +102,7 @@ export default function CustomizedDialogs({ fetchTodosData, todo }) {
                     >
                         <TextField
                             id="outlined-basic"
-                            label="title" 
-                            variant="outlined"
+                            label="title" variant="outlined"
                             color="secondary"
                             focused margin="normal"
                             value={title}
@@ -122,22 +113,16 @@ export default function CustomizedDialogs({ fetchTodosData, todo }) {
                             required
                         />
 
-                        <TextField
+                        {/* <TextField
                             id="outlined-basic"
-                            label="tags"
+                            label="body"
                             variant="outlined"
                             placeholder="Insert tags with a space between each other"
                             color="secondary"
                             focused margin="normal"
-                            value={tags.join(' ')}
-                            onChange={(e) => { setTags(e.target.value.split(' ')) }}
-                        />
-
-                        <Checkbox
-                            color="secondary"
-                            onChange={(e) => { setCompleted(e.target.checked) }}
-                            checked={completed}
-                        />
+                            value={imageUrl}
+                            onChange={(e) => { setImageUrl(e.target.value) }}
+                        /> */}
                     </Box>
                 </DialogContent>
                 <DialogActions>

@@ -1,7 +1,14 @@
 const User = require("../models/User")
 
 const getAllUser = async (req,res) => {
-    const user = await User.find()
+    const user = await User.find().sort({_id:-1})
+    if (!user)
+        return res.send("not found")
+    res.json(user)
+
+}
+const getLimitUsers = async (req,res) => {
+    const user = await User.find().sort({_id:-1}).limit(5)
     if (!user)
         return res.send("not found")
     res.json(user)
@@ -53,4 +60,4 @@ const deleteUser = async (req,res) => {
     res.json(replay)
 }
 
-module.exports = {getAllUser,createNewUser,getUserById,updateUser,deleteUser}
+module.exports = {getAllUser,createNewUser,getUserById,updateUser,deleteUser,getLimitUsers}

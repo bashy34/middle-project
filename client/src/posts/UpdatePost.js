@@ -58,13 +58,10 @@ export default function CustomizedDialogs({ fetchPostsData, post }) {
             body,
         }
         console.log(obj)
-        //save in DB
         updatePost(obj)
         alert("succes add post")
         setOpen(false);
-        // setTitle("")
-        // setTags([])
-        // setCompleted(false)
+
     }
     const updatePost = async (obj) => {
         await Axios.put(`http://localhost:7500/api/articles/`, obj)
@@ -106,7 +103,8 @@ export default function CustomizedDialogs({ fetchPostsData, post }) {
                     >
                         <TextField
                             id="outlined-basic"
-                            label="title" variant="outlined"
+                            label="title"
+                            variant="outlined"
                             color="secondary"
                             focused margin="normal"
                             value={title}
@@ -125,6 +123,8 @@ export default function CustomizedDialogs({ fetchPostsData, post }) {
                             color="secondary"
                             focused margin="normal"
                             value={body}
+                            multiline
+                            maxRows={4}
                             onChange={(e) => { setBody(e.target.value) }}
                         />
                     </Box>

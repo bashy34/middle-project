@@ -3,6 +3,7 @@ const router = express.Router()
 const taskControllers = require("../controllers/taskController")
 
 router.get("/",taskControllers.getAllTasks)
+router.get("/limit",taskControllers.getLimitTasks)
 router.post("/",taskControllers.createNewTask)
 router.get("/:taskId",taskControllers.getTaskById)
 router.put("/",taskControllers.updateTask)

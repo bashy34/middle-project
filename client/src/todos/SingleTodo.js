@@ -37,23 +37,14 @@ export default function BasicCard({ todo, fetchTodosData }) {
         <Typography gutterBottom sx={{ fontSize: 28, color: "#c493ff" }}>
           {todo.title}
         </Typography>
+        <Typography gutterBottom sx={{ fontSize: 20, color: "#3b1f5dff" ,whiteSpace: "pre-line" }}>
+          {todo.tags.join(' \n ')}
+        </Typography>
       </CardContent>
       <CardActions>
-        {/* <Checkbox
-          size="large"
-          checked={checked}
-          onChange={handleChange}
-          slotProps={{
-            input: { 'aria-label': 'controlled' },
-          }}
-        /> */}
-        {/* <IconButton aria-label="delete" size="large" onClick={handleDelete}>
-              <DeleteIcon fontSize="inherit" />
-            </IconButton> */}
+
         <Box sx={{ '& > :not(style)': { m: 1 } }}>
-          {/* <Fab color="primary" aria-label="edit">
-            <EditIcon />
-          </Fab> */}
+
           <Update1 todo={todo} fetchTodosData={fetchTodosData} />
           <Fab color="secondary" aria-label="delete" onClick={handleDelete}>
             <DeleteIcon />
@@ -73,7 +64,7 @@ export default function BasicCard({ todo, fetchTodosData }) {
                 backgroundColor: todo.completed ? '#b578ffff' : '#636060ff',
               },
             }}
-            
+
           />
         </Box>
       </CardActions>

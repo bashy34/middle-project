@@ -1,7 +1,13 @@
 const Poto = require("../models/Poto")
 
 const getAllPoto = async (req,res) => {
-    const poto = await Poto.find()
+    const poto = await Poto.find().sort({_id:-1})
+    if (!poto)
+        return res.send("not found")
+    res.json(poto)
+}
+const getLimitPoto = async (req,res) => {
+    const poto = await Poto.find().sort({_id:-1}).limit(5)
     if (!poto)
         return res.send("not found")
     res.json(poto)
@@ -9,8 +15,8 @@ const getAllPoto = async (req,res) => {
 
 const createNewPoto = async (req,res) =>  {
     const {title,imageUrl} = req.body
-    if (!title)
-        return res.status(400).send("title is required")
+    if (!title || !imageUrl)
+        return res.status(400).send("title and image url required")
     const poto = await Poto.create({title,imageUrl})
     if(!poto)
         return res.send("error")
@@ -26,14 +32,13 @@ const getPotoById = async (req,res) => {
 }
 
 const updatePoto = async (req,res) => {
-    const {id,title,imageUrl} = req.body
-    if (!title || !imageUrl )
-        return res.status(400).send("name  and imageUrl  are required")
+    const {id,title} = req.body
+    if (!title )
+        return res.status(400).send("name is required")
     const poto = await Poto.findById(id)
     if (!poto)
         return res.status(400).send("not found")
     poto.title=title
-    poto.imageUrl=imageUrl
     const saved = await poto.save()
     res.json(saved)
 
@@ -50,4 +55,4 @@ const deletePoto = async (req,res) => {
     res.json(replay)
 }
 
-module.exports = {getAllPoto,createNewPoto,getPotoById,updatePoto,deletePoto}
+module.exports = {getAllPoto,createNewPoto,getPotoById,updatePoto,deletePoto,getLimitPoto}

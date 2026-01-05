@@ -1,7 +1,14 @@
 const Task = require("../models/Task")
 
 const getAllTasks = async (req,res) => {
-    const tasks = await Task.find()
+    const tasks = await Task.find().sort({_id:-1})
+    if (!tasks)
+        return res.send("not found")
+    res.json(tasks)
+}
+
+const getLimitTasks = async (req,res) => {
+    const tasks = await Task.find().sort({_id:-1}).limit(5)
     if (!tasks)
         return res.send("not found")
     res.json(tasks)
@@ -60,4 +67,4 @@ const deleteTask = async (req,res) => {
     res.json(replay)
 }
 
-module.exports = {getAllTasks,createNewTask,updateTask,getTaskById,updateTaskComplete,deleteTask}
+module.exports = {getAllTasks,createNewTask,updateTask,getTaskById,updateTaskComplete,deleteTask,getLimitTasks}

@@ -1,7 +1,13 @@
 const Article = require("../models/Article")
 
 const getAllArticle = async (req,res) => {
-    const article = await Article.find()
+    const article = await Article.find().sort({_id:-1})
+    if (!article)
+        return res.send("not found")
+    res.json(article)
+}
+const getLimitArticle = async (req,res) => {
+    const article = await Article.find().sort({_id:-1}).limit(5)
     if (!article)
         return res.send("not found")
     res.json(article)
@@ -50,4 +56,4 @@ const deleteArticle = async (req,res) => {
     res.json(replay)
 }
 
-module.exports = {getAllArticle,createNewArticle,getArticleById,updateArticle,deleteArticle}
+module.exports = {getAllArticle,createNewArticle,getArticleById,updateArticle,deleteArticle,getLimitArticle}

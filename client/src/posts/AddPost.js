@@ -11,7 +11,7 @@ import { useState } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export default function AddTodoPage({ fetchTodosData }) {
+export default function AddTodoPage() {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState([]);
 
@@ -32,18 +32,15 @@ export default function AddTodoPage({ fetchTodosData }) {
 
     console.log(obj);
 
-    // שמירה
     addPost(obj);
 
     alert('succes add post');
 
-    // מעבר אוטומטי לדף המשימות
     navigate('/posts');
   };
 
   const addPost = async (obj) => {
     await Axios.post('http://localhost:7500/api/articles/', obj);
-    // fetchTodosData()
   };
 
   return (
@@ -72,8 +69,11 @@ export default function AddTodoPage({ fetchTodosData }) {
           />
 
           <TextField
+            id="outlined-basic"
             label="body"
             placeholder="your post"
+            multiline
+            maxRows={4}
             onChange={(e) => setBody(e.target.value)}
           />
 
